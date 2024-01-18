@@ -1,0 +1,15 @@
+
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.common.by import By
+
+executable_path = "D:\Learnings\WebScrapping\Scrappers\Selenium\chromedriver_win64\chromedriver.exe"
+website="https://www.adamchoi.co.uk/overs/detailed"
+options = webdriver.ChromeOptions()
+options.add_experimental_option("detach", True)
+service = ChromeService(executable_path=executable_path)
+driver = webdriver.Chrome(service=service, options=options)
+driver.get(website)
+all_matches_button = driver.find_element(By.XPATH, '//label[@analytics-event="All matches"]')
+all_matches_button.click()
+ 
