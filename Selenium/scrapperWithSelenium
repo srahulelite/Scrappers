@@ -33,4 +33,5 @@ for i, match in enumerate(matches, 1):
 
 df = pd.DataFrame({'date': date, 'home_team':home_team, 'score':score, 'away_team':away_team})
 print("completed")
+print(df.head())
 df.to_csv("export.csv", index=False)
