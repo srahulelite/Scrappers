@@ -2,6 +2,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.by import By
+import pandas as pd
 
 executable_path = "D:\Learnings\WebScrapping\Scrappers\Selenium\chromedriver_win64\chromedriver.exe"
 website="https://www.adamchoi.co.uk/overs/detailed"
@@ -14,7 +15,22 @@ all_matches_button = driver.find_element(By.XPATH, '//label[@analytics-event="Al
 all_matches_button.click()
 driver.implicitly_wait(3.0)
 matches = driver.find_elements(By.TAG_NAME, 'tr')
-for match in matches:
-    print(match.text)
+print("len  = " , len(matches))
+date = []
+home_team = []
+score = []
+away_team = []
 
- 
+for i, match in enumerate(matches, 1):
+   dt = match.find_elements(By.TAG_NAME, 'td')[0].text
+   date.append(dt)
+   ht = match.find_elements(By.TAG_NAME, 'td')[1].text
+   home_team.append(ht)
+   sc = match.find_elements(By.TAG_NAME, 'td')[2].text
+   score.append(sc)
+   at = match.find_elements(By.TAG_NAME, 'td')[3].text
+   away_team.append(at)
+
+df = pd.DataFrame({'date': date, 'home_team':home_team, 'score':score, 'away_team':away_team})
+print("completed")
+df.to_csv("export.csv", index=False)
