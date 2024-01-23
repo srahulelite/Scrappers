@@ -25,7 +25,7 @@ product_images = []
 product_title = []
 product_price = []
 
-for k in range(1,3):
+for k in range(1,last_pageNumber):
     time.sleep(3)
     if(k==2):
         locationBypass = driver.find_element(By.XPATH, "//*[contains(@id,'notification-banner-message')]/span/a")
