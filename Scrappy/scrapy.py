@@ -12,7 +12,7 @@ class WorldometerSpider (scrapy.Spider):
         for country in countries:
             link = country.xpath ('.//@href').get()
             countrydic[country.xpath('.//text()').get()] = link
-            
+
             #absolutepath
             #absolute_path = f"https://www.worldometers.info/{link}"
             #absolute path response.urljoin (link)
@@ -31,5 +31,3 @@ class WorldometerSpider (scrapy.Spider):
             perYearCalc['country'] = country
 
         yield perYearCalc
-            
-            
