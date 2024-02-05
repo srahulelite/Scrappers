@@ -10,4 +10,8 @@ class AudibleSpider(scrapy.Spider):
         product_container = response.xpath('//div[@class="adbl-impression-container "]/div/span/ul/li')
         
         for product in product_container:
-            title = product.xpath("")
+            title = product.xpath('.//h3[contains(@class,"bc-heading")]/a/text()').get()
+
+            yield{
+                'title':title
+            }
