@@ -6,7 +6,7 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
-
+import pandas as pd
 
 class OfficescrappersPipeline:
     def process_item(self, item, spider):
