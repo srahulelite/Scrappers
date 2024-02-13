@@ -8,5 +8,7 @@ import scrapy
 
 class WorldometerItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
+    # title = scrapy.Field()
+    # plot = scrapy.Field()
     pass
+    

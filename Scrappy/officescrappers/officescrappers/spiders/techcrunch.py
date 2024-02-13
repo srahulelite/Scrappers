@@ -4,17 +4,20 @@ from ..pipelines import OfficescrappersPipeline
 class TechcrunchSpider(scrapy.Spider):
     name = "techcrunch"
     allowed_domains = ["techcrunch.com", "feeds.a.dj.com"]
-    start_urls = ["https://techcrunch.com/category/fintech/feed/"]
+    start_urls = ["https://techcrunch.com/feed/"]
 
+    custom_settings = {
+        'DOWNLOAD_DELAY': 0.5,  # Sets a download delay of 0.5 seconds
+    }
 
     def start_requests(self):
         urls = [
-            "https://techcrunch.com/category/fintech/feed/",
+            "https://techcrunch.com/feed/",
             "https://feeds.a.dj.com/rss/RSSWSJD.xml"
         ]
         for url in urls:
             yield scrapy.Request(url=url, callback=self.parse)
-        OfficescrappersPipeline.output_ready()
+        
         
     def parse(self, response):
         for post in response.xpath('//channel/item'):
